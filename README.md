@@ -3,16 +3,19 @@
 A grunt plugin allowing you to use `@uses` annotations to load dependencies for your javascript files.
 This plugin resolves dependencies recursively, and builds a list of correctly sorted, non-duplicate dependencies.
 
-** Note:** This plugin doesn't support external urls yet.
+**Note:** This plugin doesn't support external urls yet.
 If you need support for this, create an issue here, or submit a pull request.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2` or older.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before,
+be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide,
+as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
+Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-a
+npm install grunt-useuses --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -31,12 +34,10 @@ In your project's Gruntfile, add a section for this task to the data object pass
 ```js
 grunt.initConfig({
   useuses: {
-    some_target: {
-      myTarget: {
-        src: 'assets/scripts/target/app.js',
-        dest: 'dist/scripts/target.js'
-      }
-    },
+    myTarget: {
+      src: 'assets/scripts/target/app.js',
+      dest: 'dist/scripts/target.js'
+    }
   },
 });
 ```
@@ -75,19 +76,10 @@ This plugin allows you to add a new annotation by the name of `@uses` in the fol
 ```
 
 **The advantages are clear.**
+
 You can specify dependencies in annotations making development easier,
 as you have a reference to the file's dependencies.
 The files individually still work without any dependencies, and you can still build a concatenated file.
 
 ### Examples
-```js
-/**
- * A simple javascript file that does nothing useful.
- *
- * @author  RWOverdijk
- * @version 0.1.0
- * @license MIT
- *
- * @uses ./alert
- */
-```
+I've made a very small, but very informative example. You can find it in the example directory.
