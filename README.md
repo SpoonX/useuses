@@ -4,7 +4,7 @@ A grunt plugin allowing you to use `@uses` annotations to load dependencies for 
 This plugin resolves dependencies recursively, and builds a list of correctly sorted, non-duplicate dependencies.
 
 **Note:** This plugin doesn't support external urls yet.
-If you need support for this, create an issue here, or submit a pull request.
+If you need support for this, create an issue [here](https://github.com/SpoonX/useuses/issues), or submit a pull request.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2` or older.
