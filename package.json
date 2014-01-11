@@ -1,6 +1,6 @@
 {
   "name": "grunt-useuses",
-  "description": "A grunt plugin allowing you to use use.",
+  "description": "A grunt plugin allowing you to use @uses annotations.",
   "version": "0.1.0",
   "homepage": "https://github.com/RWOverdijk/useuses",
   "author": {
@@ -37,6 +37,13 @@
     "grunt": "~0.4.2"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "grunt",
+    "plugin",
+    "require",
+    "import",
+    "dependencies",
+    "dependency",
+    "DI"
   ]
 }
