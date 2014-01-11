@@ -82,4 +82,4 @@ as you have a reference to the file's dependencies.
 The files individually still work without any dependencies, and you can still build a concatenated file.
 
 ### Examples
-I've made a very small, but very informative example. You can find it in the example directory.
+I've made a very small, but very informative example. You can find it in the `example` directory.
