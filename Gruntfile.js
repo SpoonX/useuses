@@ -1,6 +1,6 @@
 /*
  * grunt-useuses
- * https://github.com/RWOverdijk/useuses
+ * https://github.com/spoonx/useuses
  *
  * Copyright (c) 2014 RWOverdijk
  * Licensed under the MIT license.

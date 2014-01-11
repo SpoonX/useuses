@@ -2,7 +2,7 @@
   "name": "grunt-useuses",
   "description": "A grunt plugin allowing you to use `@uses` annotations to load dependencies for your javascript files.",
   "version": "0.1.0",
-  "homepage": "https://github.com/RWOverdijk/useuses",
+  "homepage": "https://github.com/spoonx/useuses",
   "author": {
     "name": "RWOverdijk",
     "email": "r.w.overdijk@gmail.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/RWOverdijk/useuses.git"
+    "url": "git://github.com/spoonx/useuses.git"
   },
   "bugs": {
-    "url": "https://github.com/RWOverdijk/useuses/issues"
+    "url": "https://github.com/spoonx/useuses/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/RWOverdijk/useuses/blob/master/LICENSE-MIT"
+      "url": "https://github.com/spoonx/useuses/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
