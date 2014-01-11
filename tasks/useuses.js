@@ -27,9 +27,9 @@ module.exports = function(grunt) {
     function scanFile(filePath) {
 
       var fileContents = grunt.file.read(filePath)
-        , pattern = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img
+        , pattern   = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img
         , foundUses = []
-        , fileRoot = filePath.replace(/[^/]*$/, '')
+        , fileRoot  = filePath.replace(/[^/]*$/, '')
         , match;
 
       while (match = pattern.exec(fileContents)) {
@@ -126,17 +126,54 @@ module.exports = function(grunt) {
       return concatenatedSources;
     }
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(files) {
+    if (this.files.length < 1) {
+      grunt.verbose.warn('Destination not written because no source files were provided.');
+    }
 
-      var sources = assembleUsedSources(files.src)
-        , src = concatSources(sources);
+    // Go through all series
+    this.files.forEach(function(f) {
+
+      var destination = f.dest
+        , files
+        , sources
+        , src;
+
+      // Filter out non-existent files
+      files = f.src.filter(function(filepath) {
+
+        // Warn on and remove invalid source files (if nonull was set).
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+
+          return false;
+        }
+
+        return true;
+      });
+
+      // Make sure we got files left after filtering.
+      if (files.length === 0) {
+        grunt.log.warn('Destination not written because no source files were found.');
+
+        // No src files. return.
+        return;
+      }
+
+      sources = assembleUsedSources(files);
+      src     = concatSources(sources);
+
+      // Make sure that compiled data is not empty
+      if (src.length === 0) {
+        grunt.log.warn('Destination not written because compiled files were empty.');
+
+        return;
+      }
 
       // Write the destination file.
-      grunt.file.write(files.dest, src);
+      grunt.file.write(destination, src);
 
       // Print a success message.
-      grunt.log.writeln('File "' + files.dest + '" created.');
+      grunt.log.writeln('File "' + destination + '" created.');
     });
   });
 };
