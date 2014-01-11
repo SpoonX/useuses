@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     function scanFile(filePath) {
 
       var fileContents = grunt.file.read(filePath)
-        , pattern = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img // Let me have my fun
+        , pattern = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img
         , foundUses = []
         , fileRoot = filePath.replace(/[^/]*$/, '')
         , match;
