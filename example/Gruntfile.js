@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     useuses: {
       groovy: {
-        src: 'scripts/app.js',
+        src: 'app/scripts/app.js',
         dest: 'built/groovy.js'
       }
     }

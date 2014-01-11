@@ -1,0 +1,13 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "description": "A simple sample to demonstrate how to use useuses.",
+  "scripts": {
+    "start": "grunt"
+  },
+  "author": "RWOverdijk",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-useuses": "~0.1.0"
+  }
+}
