@@ -35,17 +35,17 @@ module.exports = function(grunt) {
       while (match = pattern.exec(fileContents)) {
 
         var possibleTargets = [
-          match[1],
-          fileRoot + '/' + match[1]
+          fileRoot + '/' + match[1],
+          match[1]
         ];
 
         // No extension. Also look for file.js and index.js for packages.
         if (match[1].match(/\.js$/) === null) {
           possibleTargets = possibleTargets.concat([
-            match[1] + '.js',
             fileRoot + '/' + match[1] + '.js',
-            match[1] + '/index.js',
-            fileRoot + '/' + match[1] + '/index.js'
+            fileRoot + '/' + match[1] + '/index.js',
+            match[1] + '.js',
+            match[1] + '/index.js'
           ]);
         }
 
