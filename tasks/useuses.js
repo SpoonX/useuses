@@ -25,7 +25,6 @@ module.exports = function(grunt) {
      * @returns {Array}
      */
     function applyAliases(dependency) {
-
       var applied = []
         , find
         , alias;
@@ -127,8 +126,6 @@ module.exports = function(grunt) {
 
         var searchPaths = compileSearchPaths(match[1], fileRoot)
           , expandedFilePath = grunt.file.expand(searchPaths);
-
-        console.log(searchPaths);
 
         if (expandedFilePath.length === 0 || !expandedFilePath[0]) {
           grunt.log.warn('Required source "' + match[1] + '" not found. Skipping.');

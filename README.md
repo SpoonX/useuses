@@ -61,6 +61,8 @@ grunt.initConfig({
 });
 ```
 
+Allows you to do the following in your javascript files:
+
 ```js
 /**
  * Some cool file.
