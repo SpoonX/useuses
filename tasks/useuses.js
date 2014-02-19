@@ -39,14 +39,14 @@ module.exports = function(grunt) {
           match[1]
         ];
 
-        // No extension. Also look for file.js and index.js for packages.
+        // No extension. Also look for matched file (with ext .js) and index.js (for packages).
         if (match[1].match(/\.js$/) === null) {
-          possibleTargets = possibleTargets.concat([
+          possibleTargets = possibleTargets = [
             fileRoot + '/' + match[1] + '.js',
-            fileRoot + '/' + match[1] + '/index.js',
             match[1] + '.js',
+            fileRoot + '/' + match[1] + '/index.js',
             match[1] + '/index.js'
-          ]);
+          ];
         }
 
         var expandedFilePath = grunt.file.expand(possibleTargets);
