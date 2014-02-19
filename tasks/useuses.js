@@ -15,7 +15,97 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('useuses', 'A grunt plugin allowing you to use "uses" annotations to import dependencies.', function() {
 
     // A cache of file sources.
-    var fileSources = {};
+    var fileSources = {}
+      , options = this.options();
+
+    /**
+     * Apply set aliases on dependency.
+     *
+     * @param {string} dependency
+     * @returns {Array}
+     */
+    function applyAliases(dependency) {
+      var applied = []
+        , find
+        , alias;
+
+      for (var alias in options.aliases) {
+        find = new RegExp('^' + alias);
+
+        if (!find.test(dependency)) {
+          continue;
+        }
+
+        applied.push(dependency.replace(find, options.aliases[alias]));
+      }
+
+      return applied;
+    }
+
+    /**
+     * Compile a list of searchPaths.
+     *
+     * Lookup order:
+     * - Alias
+     * - Full path alias
+     * - relative
+     * - Full path
+     * - Alias index
+     * - Full path alias index
+     * - relative index
+     * - Full path index
+     *
+     * @param {string} target
+     * @param {string} callerPath
+     * @returns {Array}
+     */
+    function compileSearchPaths(rawTarget, callerPath) {
+      var searchPaths = []
+        , checkIndex = false
+        , matchAliases = applyAliases(rawTarget)
+        , target = rawTarget
+        , i
+        , k;
+
+      // Check if supplied target has .js extension
+      if (!/\.js$/.test(rawTarget)) {
+        checkIndex = true;
+        target = rawTarget + '.js';
+      }
+
+      // Add untouched.
+      searchPaths.push(target);
+      searchPaths.push(path.join(callerPath, target));
+
+      // Add aliases.
+      if (matchAliases.length > 0) {
+        i = matchAliases.length;
+
+        while (i--) {
+          // Index
+          if (checkIndex) {
+            searchPaths.push(path.join(matchAliases[i], 'index.js'));
+            searchPaths.push(path.join(callerPath, matchAliases[i], 'index.js'));
+
+            if (!/\.js$/.test(matchAliases[i])) {
+              matchAliases[i] += '.js';
+            }
+          }
+
+          // Filename
+          searchPaths.unshift(path.join(callerPath, matchAliases[i]));
+          searchPaths.unshift(matchAliases[i]);
+        }
+      }
+
+      // Add untouched index.
+      if (checkIndex) {
+        searchPaths.push(path.join(rawTarget, 'index.js'));
+        searchPaths.push(path.join(callerPath, rawTarget, 'index.js'));
+      }
+
+      return searchPaths;
+    }
 
     /**
      * Scan a file for "uses" annotations and return the resolved paths found.
@@ -27,29 +117,15 @@ module.exports = function(grunt) {
     function scanFile(filePath) {
 
       var fileContents = grunt.file.read(filePath)
-        , pattern   = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img
+        , pattern = /^\s*\*\s*@uses\s+([\w_\-.\/]+)$/img
         , foundUses = []
-        , fileRoot  = filePath.replace(/[^/]*$/, '')
+        , fileRoot = filePath.replace(/[^/]*$/, '')
         , match;
 
       while (match = pattern.exec(fileContents)) {
 
-        var possibleTargets = [
-          fileRoot + '/' + match[1],
-          match[1]
-        ];
-
-        // No extension. Also look for matched file (with ext .js) and index.js (for packages).
-        if (match[1].match(/\.js$/) === null) {
-          possibleTargets = possibleTargets = [
-            fileRoot + '/' + match[1] + '.js',
-            match[1] + '.js',
-            fileRoot + '/' + match[1] + '/index.js',
-            match[1] + '/index.js'
-          ];
-        }
-
-        var expandedFilePath = grunt.file.expand(possibleTargets);
+        var searchPaths = compileSearchPaths(match[1], fileRoot)
+          , expandedFilePath = grunt.file.expand(searchPaths);
 
         if (expandedFilePath.length === 0 || !expandedFilePath[0]) {
           grunt.log.warn('Required source "' + match[1] + '" not found. Skipping.');
@@ -160,7 +236,7 @@ module.exports = function(grunt) {
       }
 
       sources = assembleUsedSources(files);
-      src     = concatSources(sources);
+      src = concatSources(sources);
 
       // Make sure that compiled data is not empty
       if (src.length === 0) {

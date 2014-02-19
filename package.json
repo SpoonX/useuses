@@ -1,7 +1,7 @@
 {
   "name": "grunt-useuses",
   "description": "A grunt plugin allowing you to use `@uses` annotations to load dependencies for your javascript files.",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "homepage": "https://github.com/spoonx/useuses",
   "author": {
     "name": "RWOverdijk",
@@ -27,12 +27,6 @@
   "scripts": {
     "test": "grunt test"
   },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
-  },
   "peerDependencies": {
     "grunt": "~0.4.2"
   },
@@ -45,5 +39,10 @@
     "dependencies",
     "dependency",
     "DI"
-  ]
+  ],
+  "dependencies": {
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.5",
+    "grunt-contrib-nodeunit": "~0.2.2"
+  }
 }

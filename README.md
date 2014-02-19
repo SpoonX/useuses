@@ -42,6 +42,39 @@ grunt.initConfig({
 });
 ```
 
+### Options
+#### aliases
+Allows you to specify aliases for your dependencies.
+
+Example:
+
+```js
+grunt.initConfig({
+  useuses: {
+    myTarget: {},
+    options: {
+      aliases: {
+        'target': 'assets/vendor/some/target/target',
+      }
+    }
+  },
+});
+```
+
+Allows you to do the following in your javascript files:
+
+```js
+/**
+ * Some cool file.
+ *
+ * Gives you back assets/vendor/some/target/target.min.js
+ * @uses target.min
+ *
+ * Gives you back assets/vendor/some/target/target.js
+ * @uses target
+ */
+```
+
 ### Syntax
 The syntax is pretty straight forward.
 Usually your javascript files will already have a docblock at the beginning of the file:
