@@ -82,12 +82,16 @@ module.exports = function(grunt) {
      * Lookup order:
      * - Alias
      * - Full path alias
+     * - Custom search paths + alias
      * - relative
      * - Full path
+     * - Custom search paths + relative
      * - Alias index
      * - Full path alias index
+     * - Custom search paths + alias index
      * - relative index
      * - Full path index
+     * - Custom search paths + relative index
      *
      * @param {string} target
      * @param {string} callerPath
