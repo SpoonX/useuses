@@ -8,7 +8,8 @@
 
 'use strict';
 
-var path = require('path');
+var path = require('path')
+  , util = require('util');
 
 module.exports = function(grunt) {
 
@@ -40,6 +41,39 @@ module.exports = function(grunt) {
       }
 
       return applied;
+    }
+
+    /**
+     * Returns an array of the compiled searchPaths as provided through the options and arguments.
+     *
+     * @param {string} target
+     * @param {Array} searchPathsSource
+     * @param {boolean} [prepend]
+     * @returns {Array}
+     */
+    function addCustomSearchPaths(target, searchPathsSource, prepend) {
+      var searchPaths = options.searchPaths
+        , prepend = prepend || false
+        , searchPath
+        , i;
+
+      if (!util.isArray(searchPaths)) {
+        return searchPathsSource;
+      }
+
+      i = searchPaths.length;
+
+      while (i--) {
+        searchPath = path.join(searchPaths[i], target);
+
+        if (!prepend) {
+          searchPathsSource.push(searchPath);
+        } else {
+          searchPathsSource.unshift(searchPath);
+        }
+      }
+
+      return searchPathsSource;
     }
 
     /**
@@ -77,6 +111,8 @@ module.exports = function(grunt) {
       searchPaths.push(target);
       searchPaths.push(path.join(callerPath, target));
 
+      searchPaths = addCustomSearchPaths(target, searchPaths);
+
       // Add aliases.
       if (matchAliases.length > 0) {
         i = matchAliases.length;
@@ -87,12 +123,16 @@ module.exports = function(grunt) {
             searchPaths.push(path.join(matchAliases[i], 'index.js'));
             searchPaths.push(path.join(callerPath, matchAliases[i], 'index.js'));
 
+            searchPaths = addCustomSearchPaths(path.join(matchAliases[i], 'index.js'), searchPaths);
+
             if (!/\.js$/.test(matchAliases[i])) {
               matchAliases[i] += '.js';
             }
           }
 
           // Filename
+          searchPaths = addCustomSearchPaths(matchAliases[i], searchPaths, true);
+
           searchPaths.unshift(path.join(callerPath, matchAliases[i]));
           searchPaths.unshift(matchAliases[i]);
         }
@@ -102,6 +142,8 @@ module.exports = function(grunt) {
       if (checkIndex) {
         searchPaths.push(path.join(rawTarget, 'index.js'));
         searchPaths.push(path.join(callerPath, rawTarget, 'index.js'));
+
+        searchPaths = addCustomSearchPaths(path.join(rawTarget, 'index.js'), searchPaths);
       }
 
       return searchPaths;
