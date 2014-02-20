@@ -3,6 +3,10 @@
 A grunt plugin allowing you to use `@uses` annotations to load dependencies for your javascript files.
 This plugin resolves dependencies recursively, and builds a list of correctly sorted, non-duplicate dependencies.
 
+[![Build Status](https://travis-ci.org/SpoonX/useuses.png)](https://travis-ci.org/SpoonX/useuses)
+[![Dependency status](https://david-dm.org/spoonx/useuses.png)](https://david-dm.org/spoonx/useuses)
+[![NPM version](https://badge.fury.io/js/grunt-useuses.png)](http://badge.fury.io/js/grunt-useuses)
+
 **Note:** This plugin doesn't support external urls yet.
 If you need support for this, create an issue [here](https://github.com/SpoonX/useuses/issues), or submit a pull request.
 

@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - "0.10"
+
+before_script:
+  - npm install -g grunt-cli
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#spoonx"
+    on_success: never
+    on_failure: always
+    template:
+      - "Build by %{author} has failed:"
+      - "Git Info: %{branch} - %{commit}"
+      - "Travis states: %{message}"
+      - "Build Details: %{build_url}"
+      - "Change View: %{compare_url}"
+    skip_join: true
