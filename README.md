@@ -54,7 +54,7 @@ grunt.initConfig({
     myTarget: {},
     options: {
       aliases: {
-        'target': 'assets/vendor/some/target/target',
+        'angular': 'assets/vendor/angular/angular',
       }
     }
   },
@@ -67,11 +67,41 @@ Allows you to do the following in your javascript files:
 /**
  * Some cool file.
  *
- * Gives you back assets/vendor/some/target/target.min.js
- * @uses target.min
+ * Gives you back assets/vendor/angular/angular.min.js
+ * @uses angular.min
  *
- * Gives you back assets/vendor/some/target/target.js
- * @uses target
+ * Gives you back assets/vendor/angular/angular.js
+ * @uses angular
+ */
+```
+
+#### searchPaths
+Allows you to specify searchPaths for useuses.
+It's exactly what it sounds like, in that it will apply its search algorhythm in the supplied searchPaths as well.
+
+Example:
+
+```js
+grunt.initConfig({
+  useuses: {
+    myTarget: {},
+    options: {
+      searchPaths: [
+        'assets/bower_components'
+      ]
+    }
+  },
+});
+```
+
+Allows you to do the following in your javascript files:
+
+```js
+/**
+ * Some cool file.
+ *
+ * Gives you back assets/bower_components/angular/angular.min.js
+ * @uses angular/angular.min
  */
 ```
 
