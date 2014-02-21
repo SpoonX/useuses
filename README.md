@@ -4,7 +4,7 @@ A grunt plugin allowing you to use `@uses` annotations to load dependencies for 
 This plugin resolves dependencies recursively, and builds a list of correctly sorted, non-duplicate dependencies.
 
 [![Build Status](https://travis-ci.org/SpoonX/useuses.png)](https://travis-ci.org/SpoonX/useuses)
-[![Dependency status](https://david-dm.org/spoonx/useuses.png)](https://david-dm.org/spoonx/useuses)
+[![Dependency Status](https://david-dm.org/spoonx/useuses.png?theme=shields.io)](https://david-dm.org/spoonx/useuses)
 [![NPM version](https://badge.fury.io/js/grunt-useuses.png)](http://badge.fury.io/js/grunt-useuses)
 
 **Note:** This plugin doesn't support external urls yet.
