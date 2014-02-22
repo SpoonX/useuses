@@ -80,17 +80,17 @@ module.exports = function(grunt) {
      * Compile a list of searchPaths.
      *
      * Lookup order:
-     * - Alias
      * - Full path alias
+     * - Alias
      * - Custom search paths + alias
-     * - relative
      * - Full path
+     * - relative
      * - Custom search paths + relative
-     * - Alias index
      * - Full path alias index
+     * - Alias index
      * - Custom search paths + alias index
-     * - relative index
      * - Full path index
+     * - relative index
      * - Custom search paths + relative index
      *
      * @param {string} target
@@ -112,8 +112,8 @@ module.exports = function(grunt) {
       }
 
       // Add untouched.
-      searchPaths.push(target);
       searchPaths.push(path.join(callerPath, target));
+      searchPaths.push(target);
 
       searchPaths = addCustomSearchPaths(target, searchPaths);
 
@@ -124,8 +124,8 @@ module.exports = function(grunt) {
         while (i--) {
           // Index
           if (checkIndex) {
-            searchPaths.push(path.join(matchAliases[i], 'index.js'));
             searchPaths.push(path.join(callerPath, matchAliases[i], 'index.js'));
+            searchPaths.push(path.join(matchAliases[i], 'index.js'));
 
             searchPaths = addCustomSearchPaths(path.join(matchAliases[i], 'index.js'), searchPaths);
 
@@ -137,15 +137,15 @@ module.exports = function(grunt) {
           // Filename
           searchPaths = addCustomSearchPaths(matchAliases[i], searchPaths, true);
 
-          searchPaths.unshift(path.join(callerPath, matchAliases[i]));
           searchPaths.unshift(matchAliases[i]);
+          searchPaths.unshift(path.join(callerPath, matchAliases[i]));
         }
       }
 
       // Add untouched index.
       if (checkIndex) {
-        searchPaths.push(path.join(rawTarget, 'index.js'));
         searchPaths.push(path.join(callerPath, rawTarget, 'index.js'));
+        searchPaths.push(path.join(rawTarget, 'index.js'));
 
         searchPaths = addCustomSearchPaths(path.join(rawTarget, 'index.js'), searchPaths);
       }
