@@ -1,0 +1,33 @@
+{
+  "name": "useuses",
+  "version": "1.0.0",
+  "bin": {
+    "useuses": "./cli.js"
+  },
+  "description": "Track file dependencies and build based on @uses annotations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpoonX/useuses"
+  },
+  "keywords": [
+    "annotation",
+    "DI",
+    "dependency",
+    "angular"
+  ],
+  "author": "RWOverdijk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpoonX/useuses/issues"
+  },
+  "homepage": "https://github.com/SpoonX/useuses",
+  "dependencies": {
+    "async": "^0.9.0",
+    "optimist": "^0.6.1",
+    "split": "^0.3.1"
+  }
+}
