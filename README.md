@@ -31,6 +31,14 @@ It looks like this:
 It's also convenient because this module will bundle all dependencies together for you.
 If you'd like a more detailed explanation of this module and its benefits, you can read about it in this [blog post](http://blog.spoonx.nl/javascript-dependency-management/).
 
+## Features
+This module allows you to:
+
+* Build combined dist file based on used dependencies.
+* Wrap the output to prevent pollution of the global scope.
+* Include external resources. __*New__
+* Configure custom search (include) paths. __*New__
+
 ## Installation
 You can install useuses using npm:
 
@@ -39,14 +47,6 @@ You can install useuses using npm:
 
 **Global (for the cli):**
 `npm install -g useuses`
-
-## Features
-This module allows you to:
-
-* Build combined dist file based on used dependencies.
-* Wrap the output to prevent pollution of the global scope.
-* Include external resources. __*New__
-* Configure custom search (include) paths. __*New__
 
 ## Usage
 This module can be used in a programmatic manner, or via the command line.
