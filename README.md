@@ -40,6 +40,13 @@ You can install useuses using npm:
 **Global (for the cli):**
 `npm install -g useuses`
 
+## Features
+This module allows you to:
+
+* Build combined dist file based on used dependencies.
+* Wrap the output to prevent pollution of the global scope.
+* Include external resources. ***New**
+
 ## Usage
 This module can be used in a programmatic manner, or via the command line.
 

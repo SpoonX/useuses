@@ -1,6 +1,5 @@
 config/local.js
 node_modules
-.tmp
 dump.rdb
 lib-cov
 *.seed
