@@ -7,7 +7,7 @@
   "description": "Track file dependencies and build based on @uses annotations.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -b"
+    "test": "mocha -b test/unit/*.js"
   },
   "repository": {
     "type": "git",
@@ -20,13 +20,15 @@
     "angular"
   ],
   "author": "RWOverdijk",
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/SpoonX/useuses/issues"
   },
   "homepage": "https://github.com/SpoonX/useuses",
   "dependencies": {
     "async": "^0.9.0",
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
     "optimist": "^0.6.1",
     "split": "^0.3.1"
   }
