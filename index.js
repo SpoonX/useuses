@@ -40,10 +40,16 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
   async.eachSeries(sources, function (filePath, callback) {
 
     // resolve the filename to a file
-    self.file.resolve(filePath, callerFilePath, function (resolvedFilePath) {
+    self.file.resolve(filePath, callerFilePath, function (resolvedFilePath, thirdParty) {
 
       if (!resolvedFilePath) {
-        return done('File "' + sources + '" could not be resolved.');
+        return callback('File "' + filePath + '" could not be resolved.');
+      }
+
+      if (thirdParty) {
+        usedSources.push(resolvedFilePath);
+
+        return callback();
       }
 
       // Scan the file for uses
@@ -70,8 +76,8 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
         });
       });
     });
-  }, function () {
-    done(null, usedSources);
+  }, function (error) {
+    done(error, usedSources);
   });
 };
 

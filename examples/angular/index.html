@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app="cool">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, you!</title>
+</head>
+<body>
+<div ng-controller="GreetController as greet">
+    <label>Name:</label>
+    <input type="text" ng-model="greet.name" placeholder="Enter a name here">
+    <hr>
+    <h1>Hello {{greet.name}}!</h1>
+    <button ng-click="greet.kind()">Greet me kindly</button>
+    <button ng-click="greet.mean()">Greet me badly</button>
+</div>
+<script src="scripts/dist/built.js"></script>
+</body>
+</html>
