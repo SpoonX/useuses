@@ -94,8 +94,4 @@ describe('Useuses', function () {
       });
     });
   });
-
-  describe('.assembleUsedSources()', function () {
-
-  });
 });
