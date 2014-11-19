@@ -45,7 +45,8 @@ This module allows you to:
 
 * Build combined dist file based on used dependencies.
 * Wrap the output to prevent pollution of the global scope.
-* Include external resources. ***New**
+* Include external resources. __*New__
+* Configure custom search (include) paths. __*New__
 
 ## Usage
 This module can be used in a programmatic manner, or via the command line.
@@ -89,6 +90,15 @@ Use this option to tel useuses where the main project file is located.
 
 ### Out (--out, -o)
 Using this option you can tell useuses where to write the built file to.
+
+### Search (--search, -s)
+This option allows you to specify custom search paths; places for the module to look for your dependencies.
+
+Example:
+
+`useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w`
+
+Will now find `simple/main.js` and will also use the path `examples` for nested dependencies.
 
 ### Wrap (--wrap, -w)
 Setting this to true, will instruct useuses to wrap the built code in a self-invoking function.

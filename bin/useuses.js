@@ -18,8 +18,8 @@ var Useuses  = require('../index.js'),
     useuses;
 
 // Allow list of search paths.
-if (typeof options.s === 'string' && options.s.search(',') > -1) {
-  options.s = options.s.split(',');
+if (typeof options.search === 'string') {
+  options.search = options.search.split(',');
 }
 
 useuses = new Useuses(options);
