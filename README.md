@@ -98,7 +98,7 @@ Example:
 
 `useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w`
 
-Will now find `simple/main.js` and will also use the path `examples` for nested dependencies.
+Will now find `simple/main.js` in `examples/simple/main.js` and will also use the path `examples` for nested dependencies.
 
 ### Wrap (--wrap, -w)
 Setting this to true, will instruct useuses to wrap the built code in a self-invoking function.
