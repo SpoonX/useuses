@@ -9,19 +9,19 @@ which is convenient for the developer reading your code as he or she now knows w
 It looks like this:
 
 ```javascript
-    /**
-     * My file
-     *
-     * Some info about My file
-     *
-     * @author  RWOverdijk
-     * @version 0.1.0
-     * @license MIT
-     *
-     * @uses ./my-dependency.js
-     * @uses ./my/other/dependency.js
-     */
-     // Code here...
+/**
+ * My file
+ *
+ * Some info about My file
+ *
+ * @author  RWOverdijk
+ * @version 0.1.0
+ * @license MIT
+ *
+ * @uses ./my-dependency.js
+ * @uses ./my/other/dependency.js
+ */
+ // Code here...
 ```
 
 It's also convenient because this module will bundle all dependencies together for you.
