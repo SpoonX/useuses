@@ -41,7 +41,7 @@ This module can be used in a programmatic manner, or via the command line.
 
 ### CLI
 This example assumes you have useuses installed globally.
-If that's not the case, simply replace `useuses` with `./node_modules/useuses/bin/useuses`.
+If that's not the case, simply replace `useuses` with `./node_modules/useuses/bin/useuses.js`.
 
 `useuses -i example/main.js -o example/dist/built.js -w`
 
