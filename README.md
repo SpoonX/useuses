@@ -1,6 +1,32 @@
 # Useuses
 A module that allows you to build your project, resolving dependencies based on the `@uses` annotation.
 
+## What?
+Before I dive into the technical specifics, I'll explain what this module is all about.
+
+In short, it allows you to annotate your files with the `@uses` annotation to specify your dependencies;
+which is convenient for the developer reading your code as he or she now knows what dependencies a file has.
+It looks like this:
+
+```javascript
+/**
+ * My file
+ *
+ * Some info about My file
+ *
+ * @author  RWOverdijk
+ * @version 0.1.0
+ * @license MIT
+ *
+ * @uses ./my-dependency.js
+ * @uses ./my/other/dependency.js
+ */
+ // Code here...
+```
+
+It's also convenient because this module will bundle all dependencies together for you.
+If you'd like a more detailed explanation of this module and its benefits, you can read about it in this [blog post](http://blog.spoonx.nl/javascript-dependency-management/).
+
 ## Installation
 You can install useuses using npm:
 
