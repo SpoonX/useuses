@@ -31,6 +31,14 @@ It looks like this:
 It's also convenient because this module will bundle all dependencies together for you.
 If you'd like a more detailed explanation of this module and its benefits, you can read about it in this [blog post](http://blog.spoonx.nl/javascript-dependency-management/).
 
+## Features
+This module allows you to:
+
+* Build combined dist file based on used dependencies.
+* Wrap the output to prevent pollution of the global scope.
+* Include external resources. __*New__
+* Configure custom search (include) paths. __*New__
+
 ## Installation
 You can install useuses using npm:
 
@@ -39,13 +47,6 @@ You can install useuses using npm:
 
 **Global (for the cli):**
 `npm install -g useuses`
-
-## Features
-This module allows you to:
-
-* Build combined dist file based on used dependencies.
-* Wrap the output to prevent pollution of the global scope.
-* Include external resources. ***New**
 
 ## Usage
 This module can be used in a programmatic manner, or via the command line.
@@ -89,6 +90,15 @@ Use this option to tel useuses where the main project file is located.
 
 ### Out (--out, -o)
 Using this option you can tell useuses where to write the built file to.
+
+### Search (--search, -s)
+This option allows you to specify custom search paths; places for the module to look for your dependencies.
+
+Example:
+
+`useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w`
+
+Will now find `simple/main.js` in `examples/simple/main.js` and will also use the path `examples` for nested dependencies.
 
 ### Wrap (--wrap, -w)
 Setting this to true, will instruct useuses to wrap the built code in a self-invoking function.
