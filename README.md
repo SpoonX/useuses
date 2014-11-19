@@ -4,10 +4,10 @@ A module that allows you to build your project, resolving dependencies based on 
 ## Installation
 You can install useuses using npm:
 
-### Save as dependency:
+**Save as dependency:**
 `npm install useuses --save`
 
-### Global (for the cli):
+**Global (for the cli):**
 `npm install -g useuses`
 
 ## Usage
