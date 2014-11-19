@@ -43,7 +43,7 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
     self.file.resolve(filePath, callerFilePath, function (resolvedFilePath) {
 
       if (!resolvedFilePath) {
-        done('File "' + sources + '" could not be resolved.');
+        return done('File "' + sources + '" could not be resolved.');
       }
 
       // Scan the file for uses
