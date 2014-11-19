@@ -1,6 +1,10 @@
 # Useuses
 A module that allows you to build your project, resolving dependencies based on the `@uses` annotation.
 
+[![Build Status](https://travis-ci.org/SpoonX/useuses.png)](https://travis-ci.org/SpoonX/useuses)
+[![Dependency Status](https://david-dm.org/spoonx/useuses.svg)](https://david-dm.org/spoonx/useuses)
+[![NPM version](https://badge.fury.io/js/useuses.png)](http://badge.fury.io/js/useuses)
+
 ## What?
 Before I dive into the technical specifics, I'll explain what this module is all about.
 
@@ -41,7 +45,7 @@ This module can be used in a programmatic manner, or via the command line.
 
 ### CLI
 This example assumes you have useuses installed globally.
-If that's not the case, simply replace `useuses` with `./node_modules/useuses/bin/useuses`.
+If that's not the case, simply replace `useuses` with `./node_modules/useuses/bin/useuses.js`.
 
 `useuses -i example/main.js -o example/dist/built.js -w`
 

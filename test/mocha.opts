@@ -1,0 +1,5 @@
+--reporter spec
+--recursive
+--slow 100
+--timeout 5000
+test/unit
