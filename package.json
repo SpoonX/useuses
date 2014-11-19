@@ -2,7 +2,7 @@
   "name": "useuses",
   "version": "1.0.0",
   "bin": {
-    "useuses": "./cli.js"
+    "useuses": "./bin/useuses.js"
   },
   "description": "Track file dependencies and build based on @uses annotations.",
   "main": "index.js",

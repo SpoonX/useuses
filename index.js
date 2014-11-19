@@ -11,7 +11,7 @@ var fs      = require('fs'),
  */
 function Useuses (options) {
   this.options = options;
-  this.file = new File(options);
+  this.file    = new File(options);
 }
 
 /**
@@ -23,7 +23,7 @@ function Useuses (options) {
  */
 Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done) {
   var usedSources = [],
-      self = this;
+      self        = this;
 
   // Ensure array, to simplify lookup
   if (typeof sources === 'string') {
@@ -32,7 +32,7 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
 
   // Make callerFilePath optional.
   if (typeof callerFilePath === 'function') {
-    done = callerFilePath;
+    done           = callerFilePath;
     callerFilePath = null;
   }
 
@@ -78,7 +78,7 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
 /**
  * Compile the bundled file as specified in `options` on construct.
  *
- * @param {function} done
+ * @param {function} done Callback function defined like function (error, assembled) {}
  */
 Useuses.prototype.compile = function (done) {
   var self = this;
@@ -100,12 +100,12 @@ Useuses.prototype.compile = function (done) {
       return self.indexOf(value) === index;
     });
 
-    self.file.writeCombined(self.options.o, assembled, function (error) {
+    self.file.writeCombined(self.options.out, assembled, function (error) {
       if (error) {
         return handleError(error, done);
       }
 
-      done();
+      done(null, assembled);
     });
   });
 };
