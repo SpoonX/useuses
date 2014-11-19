@@ -31,6 +31,6 @@ useuses.compile(function (error, assembled) {
     process.exit(1);
   }
   
-  console.log('The build completed successfully. You can find the compiled file at "' + options.o + '".');
+  console.log('The build completed successfully. You can find the compiled file at "' + options.out + '".');
 });
 
