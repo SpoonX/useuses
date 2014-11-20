@@ -12,6 +12,8 @@ var Useuses  = require('../index.js'),
       .describe('i', 'The main file of your application.')
       .alias('s', 'search')
       .describe('s', 'Comma separated list of additional search paths (include paths).')
+      .alias('a', 'alias')
+      .describe('a', 'Allows you to alias dependencies, and paths.')
       .alias('w', 'wrap')
       .describe('w', 'Wrap the output in a self-invoking function.')
       .argv,
@@ -20,6 +22,21 @@ var Useuses  = require('../index.js'),
 // Allow list of search paths.
 if (typeof options.search === 'string') {
   options.search = options.search.split(',');
+}
+
+// Allow list of aliases.
+if (typeof options.alias === 'string') {
+  options.alias = options.alias.split(',');
+}
+
+if (options.alias) {
+  options.aliases = {};
+
+  options.alias.forEach(function (alias) {
+    var parts = alias.split('=');
+
+    options.aliases[parts[0]] = parts[1];
+  });
 }
 
 useuses = new Useuses(options);
