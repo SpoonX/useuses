@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Useuses by SpoonX</title>
+    <meta name="description" content="Useuses : A module allowing you to use `@uses` annotations to load dependencies for your javascript files.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Useuses</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>Useuses</h1>
-          <h2>A module allowing you to use `@uses` annotations to load dependencies for your javascript files.</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/SpoonX/useuses">View on GitHub</a>
+
+          <h1 id="project_title">Useuses</h1>
+          <h2 id="project_tagline">A module allowing you to use `@uses` annotations to load dependencies for your javascript files.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/SpoonX/useuses/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/SpoonX/useuses/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
+    </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/SpoonX/useuses/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/SpoonX/useuses/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/SpoonX/useuses" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h1>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
 <a id="useuses" class="anchor" href="#useuses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Useuses</h1>
 
 <p>A module that allows you to build your project, resolving dependencies based on the <code>@uses</code> annotation.</p>
@@ -74,7 +74,9 @@ If you'd like a more detailed explanation of this module and its benefits, you c
 <ul>
 <li>Build combined dist file based on used dependencies.</li>
 <li>Wrap the output to prevent pollution of the global scope.</li>
-<li>Include external resources. <strong>*New</strong>
+<li>Include external (third party) resources. <strong>*New</strong>
+</li>
+<li>Aliases. <strong>*New</strong>
 </li>
 <li>Configure custom search (include) paths. <strong>*New</strong>
 </li>
@@ -104,19 +106,24 @@ If that's not the case, simply replace <code>useuses</code> with <code>./node_mo
 
 <p><code>useuses -i example/main.js -o example/dist/built.js -w</code></p>
 
+<p>All available options can be found further down this document.</p>
+
 <h3>
 <a id="programmatic" class="anchor" href="#programmatic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Programmatic</h3>
 
-<p>Below is a full example of how to use Useuses.</p>
+<p>Below is an example on how to use Useuses.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Useuses <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>useuses<span class="pl-pds">'</span></span>),
     useuses,
     options;
 
 options <span class="pl-k">=</span> {
-  in  <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/main.js<span class="pl-pds">'</span></span>,
-  out <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/dist/built.js<span class="pl-pds">'</span></span>,
-  wrap<span class="pl-k">:</span> <span class="pl-c1">true</span>
+  in     <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/main.js<span class="pl-pds">'</span></span>,
+  out    <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/dist/built.js<span class="pl-pds">'</span></span>,
+  wrap   <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  verbose<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  aliases<span class="pl-k">:</span> {foo<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bar/baz/bat<span class="pl-pds">'</span></span>},
+  search <span class="pl-k">:</span> [<span class="pl-s1"><span class="pl-pds">'</span>bower_components<span class="pl-pds">'</span></span>]
 };
 
 useuses <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Useuses</span>(options);
@@ -129,6 +136,8 @@ useuses.<span class="pl-s3">compile</span>(<span class="pl-st">function</span> (
   <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Yay! The build succeeded. The files included in the build are:<span class="pl-pds">'</span></span>, assembled);
 });</pre></div>
 
+<p>All available options can be found further down this document.</p>
+
 <h2>
 <a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
 
@@ -137,12 +146,56 @@ useuses.<span class="pl-s3">compile</span>(<span class="pl-st">function</span> (
 <h3>
 <a id="in---in--i" class="anchor" href="#in---in--i" aria-hidden="true"><span class="octicon octicon-link"></span></a>In (--in, -i)</h3>
 
-<p>Use this option to tel useuses where the main project file is located.</p>
+<p>Use this option to tell useuses where the main project file is located.</p>
 
 <h3>
 <a id="out---out--o" class="anchor" href="#out---out--o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Out (--out, -o)</h3>
 
 <p>Using this option you can tell useuses where to write the built file to.</p>
+
+<h3>
+<a id="verbose---verbose--v" class="anchor" href="#verbose---verbose--v" aria-hidden="true"><span class="octicon octicon-link"></span></a>Verbose (--verbose, -v)</h3>
+
+<p>When supplied, useuses will output the files written to the build.</p>
+
+<h3>
+<a id="tolerant---tolerant--t" class="anchor" href="#tolerant---tolerant--t" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tolerant (--tolerant, -t)</h3>
+
+<p>When supplied, useuses will not stop on missing dependencies.</p>
+
+<h3>
+<a id="dryrun---dry-run--d" class="anchor" href="#dryrun---dry-run--d" aria-hidden="true"><span class="octicon octicon-link"></span></a>DryRun (--dry-run, -d)</h3>
+
+<p>When supplied, useuses won't write the actual build.
+In stead, it will output a list of files that <em>would</em> have been written if this weren't a dry-run.</p>
+
+<p><strong>Note:</strong> Programmatically, the key for this option is <code>dryRun</code>.</p>
+
+<h3>
+<a id="aliases---alias--a" class="anchor" href="#aliases---alias--a" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aliases (--alias, -a)</h3>
+
+<p>With this option you can set up aliases for your dependencies.
+This is particularly useful with external resources or vendor (lib) files.</p>
+
+<p>Example:</p>
+
+<p><code>-a angular=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js</code></p>
+
+<p>Now you can just use <code>@uses angular</code> to specify you're using angular, and it will be downloaded and added to the build.</p>
+
+<p>Using aliases can also be useful to specify alias paths.</p>
+
+<p>For instance, creating alias <code>-a namespace/core=library/namespace/src/core</code> would allow you to get rid of the lengthy <a href="https://github.com/uses" class="user-mention">@uses</a>.
+You can now just specify <code>namespace/core/array-utilities.js</code> as a dependency.</p>
+
+<p>You can supply multiple <code>-a</code> options, or an array separated string of assignments.</p>
+
+<p>Example:</p>
+
+<p><code>-a vendor=vendor/bower_components,angular=library/angular/angular.js</code></p>
+
+<p><strong>Note:</strong> Programmatically, the key for this option is <code>aliases</code>.
+An object where the key is the alias, and the value is what the alias links to.</p>
 
 <h3>
 <a id="search---search--s" class="anchor" href="#search---search--s" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search (--search, -s)</h3>
@@ -154,6 +207,8 @@ useuses.<span class="pl-s3">compile</span>(<span class="pl-st">function</span> (
 <p><code>useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w</code></p>
 
 <p>Will now find <code>simple/main.js</code> in <code>examples/simple/main.js</code> and will also use the path <code>examples</code> for nested dependencies.</p>
+
+<p><strong>Note:</strong> Programmatically, the value for this option should be an array of paths.</p>
 
 <h3>
 <a id="wrap---wrap--w" class="anchor" href="#wrap---wrap--w" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wrap (--wrap, -w)</h3>
@@ -174,15 +229,18 @@ The advantage here, is that your code will not pollute the global scope; but wil
 
   <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Hello <span class="pl-pds">'</span></span> <span class="pl-k">+</span> name);
 })();</pre></div>
-        </section>
-
-        <footer>
-          Useuses is maintained by <a href="https://github.com/SpoonX">SpoonX</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
     </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Useuses maintained by <a href="https://github.com/SpoonX">SpoonX</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
   </body>
 </html>
