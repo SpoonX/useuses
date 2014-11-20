@@ -7,7 +7,7 @@ var fs      = require('fs'),
 /**
  * Constructor for a new useuses compiler.
  *
- * @param {{rootDirectory, in, out, wrap, alias, aliases, search}} options
+ * @param {{rootDirectory, in, out, wrap, alias, aliases, search, tolerant, verbose, dryRun}} options
  * @constructor
  */
 function Useuses (options) {
@@ -45,6 +45,13 @@ Useuses.prototype.assembleUsedSources = function (sources, callerFilePath, done)
     self.file.resolve(filePath, callerFilePath, function (resolvedFilePath, thirdParty) {
 
       if (!resolvedFilePath) {
+        if (self.options.tolerant) {
+          if (self.options.verbose) {
+            console.log('> !File "' + filePath + '" could not be resolved.');
+          }
+
+          return callback();
+        }
         return callback('File "' + filePath + '" could not be resolved.');
       }
 

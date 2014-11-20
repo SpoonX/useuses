@@ -58,8 +58,10 @@ If that's not the case, simply replace `useuses` with `./node_modules/useuses/bi
 
 `useuses -i example/main.js -o example/dist/built.js -w`
 
+All available options can be found further down this document.
+
 ### Programmatic
-Below is a full example of how to use Useuses.
+Below is an example on how to use Useuses.
 
 ```javascript
 var Useuses = require('useuses'),
@@ -67,9 +69,12 @@ var Useuses = require('useuses'),
     options;
 
 options = {
-  in  : 'example/main.js',
-  out : 'example/dist/built.js',
-  wrap: true
+  in     : 'example/main.js',
+  out    : 'example/dist/built.js',
+  wrap   : true,
+  verbose: true,
+  aliases: {foo: 'bar/baz/bat'},
+  search : ['bower_components']
 };
 
 useuses = new Useuses(options);
@@ -83,6 +88,8 @@ useuses.compile(function (error, assembled) {
 });
 ```
 
+All available options can be found further down this document.
+
 ## Options
 The following options are currently available for useuses.
 
@@ -92,7 +99,19 @@ Use this option to tell useuses where the main project file is located.
 ### Out (--out, -o)
 Using this option you can tell useuses where to write the built file to.
 
-### Alias (--alias, -a)
+### Verbose (--verbose, -v)
+When supplied, useuses will output the files written to the build.
+
+### Tolerant (--tolerant, -t)
+When supplied, useuses will not stop on missing dependencies.
+
+### DryRun (--dry-run, -d)
+When supplied, useuses won't write the actual build.
+In stead, it will output a list of files that _would_ have been written if this weren't a dry-run.
+
+**Note:** Programmatically, the key for this option is `dryRun`.
+
+### Aliases (--alias, -a)
 With this option you can set up aliases for your dependencies.
 This is particularly useful with external resources or vendor (lib) files.
 
@@ -113,6 +132,9 @@ Example:
 
 `-a vendor=vendor/bower_components,angular=library/angular/angular.js`
 
+**Note:** Programmatically, the key for this option is `aliases`.
+An object where the key is the alias, and the value is what the alias links to.
+
 ### Search (--search, -s)
 This option allows you to specify custom search paths; places for the module to look for your dependencies.
 
@@ -121,6 +143,8 @@ Example:
 `useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w`
 
 Will now find `simple/main.js` in `examples/simple/main.js` and will also use the path `examples` for nested dependencies.
+
+**Note:** Programmatically, the value for this option should be an array of paths.
 
 ### Wrap (--wrap, -w)
 Setting this to true, will instruct useuses to wrap the built code in a self-invoking function.
