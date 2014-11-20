@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Useuses by SpoonX</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Useuses</h1>
+          <h2>A module allowing you to use `@uses` annotations to load dependencies for your javascript files.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/SpoonX/useuses/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/SpoonX/useuses/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/SpoonX/useuses" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="useuses" class="anchor" href="#useuses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Useuses</h1>
+
+<p>A module that allows you to build your project, resolving dependencies based on the <code>@uses</code> annotation.</p>
+
+<p><a href="https://travis-ci.org/SpoonX/useuses"><img src="https://travis-ci.org/SpoonX/useuses.png" alt="Build Status"></a>
+<a href="https://david-dm.org/spoonx/useuses"><img src="https://david-dm.org/spoonx/useuses.svg" alt="Dependency Status"></a>
+<a href="http://badge.fury.io/js/useuses"><img src="https://badge.fury.io/js/useuses.png" alt="NPM version"></a></p>
+
+<h2>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span class="octicon octicon-link"></span></a>What?</h2>
+
+<p>Before I dive into the technical specifics, I'll explain what this module is all about.</p>
+
+<p>In short, it allows you to annotate your files with the <code>@uses</code> annotation to specify your dependencies;
+which is convenient for the developer reading your code as he or she now knows what dependencies a file has.
+It looks like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">/**</span>
+<span class="pl-c"> * My file</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> * Some info about My file</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> * @author  RWOverdijk</span>
+<span class="pl-c"> * @version 0.1.0</span>
+<span class="pl-c"> * @license MIT</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> * @uses ./my-dependency.js</span>
+<span class="pl-c"> * @uses ./my/other/dependency.js</span>
+<span class="pl-c"> */</span>
+ <span class="pl-c">// Code here...</span></pre></div>
+
+<p>It's also convenient because this module will bundle all dependencies together for you.
+If you'd like a more detailed explanation of this module and its benefits, you can read about it in this <a href="http://blog.spoonx.nl/javascript-dependency-management/">blog post</a>.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>This module allows you to:</p>
+
+<ul>
+<li>Build combined dist file based on used dependencies.</li>
+<li>Wrap the output to prevent pollution of the global scope.</li>
+<li>Include external resources. <strong>*New</strong>
+</li>
+<li>Configure custom search (include) paths. <strong>*New</strong>
+</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can install useuses using npm:</p>
+
+<p><strong>Save as dependency:</strong>
+<code>npm install useuses --save</code></p>
+
+<p><strong>Global (for the cli):</strong>
+<code>npm install -g useuses</code></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>This module can be used in a programmatic manner, or via the command line.</p>
+
+<h3>
+<a id="cli" class="anchor" href="#cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>CLI</h3>
+
+<p>This example assumes you have useuses installed globally.
+If that's not the case, simply replace <code>useuses</code> with <code>./node_modules/useuses/bin/useuses.js</code>.</p>
+
+<p><code>useuses -i example/main.js -o example/dist/built.js -w</code></p>
+
+<h3>
+<a id="programmatic" class="anchor" href="#programmatic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Programmatic</h3>
+
+<p>Below is a full example of how to use Useuses.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Useuses <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>useuses<span class="pl-pds">'</span></span>),
+    useuses,
+    options;
+
+options <span class="pl-k">=</span> {
+  in  <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/main.js<span class="pl-pds">'</span></span>,
+  out <span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>example/dist/built.js<span class="pl-pds">'</span></span>,
+  wrap<span class="pl-k">:</span> <span class="pl-c1">true</span>
+};
+
+useuses <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Useuses</span>(options);
+
+useuses.<span class="pl-s3">compile</span>(<span class="pl-st">function</span> (<span class="pl-vpf">error</span>, <span class="pl-vpf">assembled</span>) {
+  <span class="pl-k">if</span> (error) {
+    <span class="pl-k">return</span> <span class="pl-en">console</span><span class="pl-s3">.error</span>(error);
+  }
+
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Yay! The build succeeded. The files included in the build are:<span class="pl-pds">'</span></span>, assembled);
+});</pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<p>The following options are currently available for useuses.</p>
+
+<h3>
+<a id="in---in--i" class="anchor" href="#in---in--i" aria-hidden="true"><span class="octicon octicon-link"></span></a>In (--in, -i)</h3>
+
+<p>Use this option to tel useuses where the main project file is located.</p>
+
+<h3>
+<a id="out---out--o" class="anchor" href="#out---out--o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Out (--out, -o)</h3>
+
+<p>Using this option you can tell useuses where to write the built file to.</p>
+
+<h3>
+<a id="search---search--s" class="anchor" href="#search---search--s" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search (--search, -s)</h3>
+
+<p>This option allows you to specify custom search paths; places for the module to look for your dependencies.</p>
+
+<p>Example:</p>
+
+<p><code>useuses -i simple/main.js -o examples/simple/dist/built.js -s examples -w</code></p>
+
+<p>Will now find <code>simple/main.js</code> in <code>examples/simple/main.js</code> and will also use the path <code>examples</code> for nested dependencies.</p>
+
+<h3>
+<a id="wrap---wrap--w" class="anchor" href="#wrap---wrap--w" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wrap (--wrap, -w)</h3>
+
+<p>Setting this to true, will instruct useuses to wrap the built code in a self-invoking function.
+The advantage here, is that your code will not pollute the global scope; but will still run.</p>
+
+<p>For example, this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> name <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>World<span class="pl-pds">'</span></span>;
+
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Hello <span class="pl-pds">'</span></span> <span class="pl-k">+</span> name);</pre></div>
+
+<p>Would become this:</p>
+
+<div class="highlight highlight-javascript"><pre>(<span class="pl-st">function</span> () {
+  <span class="pl-s">var</span> name <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>World<span class="pl-pds">'</span></span>;
+
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>Hello <span class="pl-pds">'</span></span> <span class="pl-k">+</span> name);
+})();</pre></div>
+        </section>
+
+        <footer>
+          Useuses is maintained by <a href="https://github.com/SpoonX">SpoonX</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
