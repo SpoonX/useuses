@@ -247,7 +247,7 @@ d,a[d])}else if(a)for(d in c={},a)a.hasOwnProperty(d)&&(c[d]=h(C,d,a[d]));return
 console.log("WARNING: Tried to load angular more than once."):(Id(),Kd(ta),D(X).ready(function(){Ed(X,rc)}))})(window,document);!window.angular.$$csp()&&window.angular.element(document).find("head").prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
 //# sourceMappingURL=angular.min.js.map
 /**
- * @uses https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js
+ * @uses angular
  */
 angular.module('social', []);
 
@@ -263,7 +263,7 @@ angular.module('social').controller('GreetController', function () {
   };
 });
 /**
- * @uses https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js
+ * @uses angular
  * @uses ./social/social.js
  */
 angular.module('cool', [

@@ -1,17 +1,19 @@
 var fs      = require('fs'),
     extract = require('./lib/extract'),
     async   = require('async'),
+    path    = require('path'),
     File    = require('./lib/file');
 
 /**
  * Constructor for a new useuses compiler.
  *
- * @param {{}} options
+ * @param {{rootDirectory, in, out, wrap, alias, aliases, search}} options
  * @constructor
  */
 function Useuses (options) {
-  this.options = options;
-  this.file    = new File(options);
+  this.options          = options;
+  this.file             = new File(options);
+  options.rootDirectory = path.dirname(options.in);
 }
 
 /**

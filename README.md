@@ -36,7 +36,8 @@ This module allows you to:
 
 * Build combined dist file based on used dependencies.
 * Wrap the output to prevent pollution of the global scope.
-* Include external resources. __*New__
+* Include external (third party) resources. __*New__
+* Aliases. __*New__
 * Configure custom search (include) paths. __*New__
 
 ## Installation
@@ -86,10 +87,31 @@ useuses.compile(function (error, assembled) {
 The following options are currently available for useuses.
 
 ### In (--in, -i)
-Use this option to tel useuses where the main project file is located.
+Use this option to tell useuses where the main project file is located.
 
 ### Out (--out, -o)
 Using this option you can tell useuses where to write the built file to.
+
+### Alias (--alias, -a)
+With this option you can set up aliases for your dependencies.
+This is particularly useful with external resources or vendor (lib) files.
+
+Example:
+
+`-a angular=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js`
+
+Now you can just use `@uses angular` to specify you're using angular, and it will be downloaded and added to the build.
+
+Using aliases can also be useful to specify alias paths.
+
+For instance, creating alias `-a namespace/core=library/namespace/src/core` would allow you to get rid of the lengthy @uses.
+You can now just specify `namespace/core/array-utilities.js` as a dependency.
+
+You can supply multiple `-a` options, or an array separated string of assignments.
+
+Example:
+
+`-a vendor=vendor/bower_components,angular=library/angular/angular.js`
 
 ### Search (--search, -s)
 This option allows you to specify custom search paths; places for the module to look for your dependencies.
