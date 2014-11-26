@@ -1,0 +1,9 @@
+/**
+ * Foo.css
+ * 
+ * @uses ./joe.css
+ * 
+ */
+.joe {
+  background-color: red;
+}
