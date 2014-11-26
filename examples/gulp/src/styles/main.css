@@ -1,0 +1,10 @@
+/**
+ * Main.css
+ * 
+ * @uses ./foo.css
+ * 
+ */
+.main {
+  height: 300px;
+  width : 300px;
+}
