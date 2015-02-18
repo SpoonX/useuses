@@ -2,9 +2,11 @@
 function hippify(what) {
   return what + ', now gluten free!';
 }
+
 function opposite_day(what) {
   return what.split('').reverse().join('');
 }
+
 // Ensure btoa exists
 if (typeof btoa === 'undefined') {
   var btoa = function (a) {return a;};
@@ -13,6 +15,7 @@ if (typeof btoa === 'undefined') {
 function drop_the_base(what) {
   return btoa(encodeURIComponent(what));
 }
+
 /**
  * Let's mix up the string!
  *
@@ -25,6 +28,7 @@ function drop_the_base(what) {
 function mixup (what) {
   return hippify(opposite_day(drop_the_base(what)));
 }
+
 /**
  * This cool function to demonstrate the power of the @uses annotation
  *
@@ -42,5 +46,6 @@ function represent (something, rather, awesome) {
 }
 
 represent('Useuses', 'pretty damn', 'Wicked');
+
 
 })();
