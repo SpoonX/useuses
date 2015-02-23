@@ -167,3 +167,11 @@ Would become this:
   console.log('Hello ' + name);
 })();
 ```
+
+## Support
+If you have any questions / suggestions feel free to use one of the following resources:
+
+* Take a look at the [wiki](https://github.com/SpoonX/useuses/wiki)
+* Take a look at the [issues](https://github.com/SpoonX/useuses/issues)
+* Join us on gitter [![Gitter chat](https://badges.gitter.im/SpoonX/Dev.png)](https://gitter.im/SpoonX/Dev)
+* [RWOverdijk at irc.freenode.net in #spoonx](http://webchat.freenode.net/?channels=spoonx&uio=MTE9MTAz8d)
