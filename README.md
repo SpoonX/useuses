@@ -171,6 +171,6 @@ Would become this:
 ## Support
 If you have any questions / suggestions feel free to use one of the following resources:
 
-* Take a look at the [wiki](wiki)
-* Take a look at the [issues](issues)
+* Take a look at the [wiki](./wiki)
+* Take a look at the [issues](./issues)
 * Join us on gitter [![Gitter chat](https://badges.gitter.im/SpoonX/Dev.png)](https://gitter.im/SpoonX/Dev)
