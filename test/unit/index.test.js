@@ -65,7 +65,7 @@ describe('Useuses', function () {
     it('should fail because dest is not writable.', function (done) {
       var options = {
             in  : 'examples/simple/main.js',
-            out : 'foo/bat.js',
+            out : '/etc/out.js',
             wrap: true
           },
           useuses;
@@ -73,7 +73,7 @@ describe('Useuses', function () {
       useuses = new Useuses(options);
 
       useuses.compile(function (error) {
-        assert.equal(error, 'foo/bat.js is not writable!');
+        assert.equal(error.code, 'EACCES');
         done();
       });
     });
